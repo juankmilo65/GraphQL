@@ -1,0 +1,12 @@
+type Item {
+  _id: ID!
+  name: String!
+  category: Int!
+}
+
+type Query {
+  "Return all items"
+  getItems: [Item]
+  "Return a item"
+  getItem(id: ID!): Item
+}
