@@ -10,3 +10,22 @@ type Query {
   "Return a item"
   getItem(id: ID!): Item
 }
+
+input ItemInput {
+  name: String!
+  category: Int!
+}
+
+input ItemEditInput {
+  name: String
+  category: Int
+}
+
+type Mutation {
+  "Create Items autocomplete"
+  createItem(input: ItemInput!): Item
+  "Edit item by id"
+  editItem(_id: ID!, input: ItemEditInput): Item
+  "Delete item by id"
+  deleteItem(_id: ID!): String
+}
