@@ -2,6 +2,7 @@ type Item {
   _id: ID!
   mysqlId: Int!
   name: String!
+  planId: Int!
 }
 
 type Catalog {
@@ -9,6 +10,7 @@ type Catalog {
   mysqlId: Int!
   name: String!
   items: [Item]
+  standarPremiumItems: [Item]
 }
 
 type Query {
@@ -17,14 +19,17 @@ type Query {
   "Return a item"
   getItem(id: ID!): Item
   "Return all catalogs"
-  getcatalogs: [Catalog]
+  getCatalogs: [Catalog]
   "Return a catalog"
   getCatalog(id: ID!): Catalog
+  "Return catalogs with standard and premium item plan"
+  getCatalogsStandardPremimItemPlan: [Catalog]
 }
 
 input ItemInput {
   mysqlId: Int!
   name: String!
+  planId: Int!
 }
 
 input CatalogInput {
@@ -34,6 +39,7 @@ input CatalogInput {
 
 input ItemEditInput {
   name: String
+  planId: Int
 }
 
 type Mutation {
