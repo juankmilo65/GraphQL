@@ -1,7 +1,14 @@
 type Item {
   _id: ID!
+  mysqlId: Int!
   name: String!
-  category: Int!
+}
+
+type Catalog {
+  _id: ID!
+  mysqlId: Int!
+  name: String!
+  items: [Item]
 }
 
 type Query {
@@ -9,23 +16,35 @@ type Query {
   getItems: [Item]
   "Return a item"
   getItem(id: ID!): Item
+  "Return all catalogs"
+  getcatalogs: [Catalog]
+  "Return a catalog"
+  getCatalog(id: ID!): Catalog
 }
 
 input ItemInput {
+  mysqlId: Int!
   name: String!
-  category: Int!
+}
+
+input CatalogInput {
+  mysqlId: Int!
+  name: String!
 }
 
 input ItemEditInput {
   name: String
-  category: Int
 }
 
 type Mutation {
   "Create Items autocomplete"
   createItem(input: ItemInput!): Item
+  "Create Catalogs"
+  createCatalog(input: CatalogInput!): Catalog
   "Edit item by id"
   editItem(_id: ID!, input: ItemEditInput): Item
   "Delete item by id"
   deleteItem(_id: ID!): String
+  "Relate Item to a catalog"
+  relateItemsToCatalog(catalogID: ID!, itemID: ID!): Catalog
 }
