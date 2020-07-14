@@ -1,3 +1,5 @@
+union IndexSearch = Catalog | Item
+
 type Item {
   _id: ID!
   mysqlId: Int!
@@ -10,7 +12,6 @@ type Catalog {
   mysqlId: Int!
   name: String!
   items: [Item]
-  standarPremiumItems: [Item]
 }
 
 type Query {
@@ -23,7 +24,7 @@ type Query {
   "Return a catalog"
   getCatalog(id: ID!): Catalog
   "Return catalogs with standard and premium item plan"
-  getCatalogsStandardPremimItemPlan: [Catalog]
+  getCatalogsStandardPremimItemPlan(keyword: String!): [IndexSearch]
 }
 
 input ItemInput {
