@@ -12,6 +12,7 @@ type Catalog {
   mysqlId: Int!
   name: String!
   items: [Item]
+  filteredItems: [Item]
 }
 
 type Query {
