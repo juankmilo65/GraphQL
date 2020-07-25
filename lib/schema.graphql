@@ -5,6 +5,8 @@ type Item {
   mysqlId: Int!
   name: String!
   planId: Int!
+  image: String!
+  description: String!
 }
 
 type Catalog {
@@ -24,8 +26,13 @@ type Query {
   getCatalogs: [Catalog]
   "Return a catalog"
   getCatalog(id: ID!): Catalog
-  "Return catalogs with standard and premium item plan"
-  getCatalogsStandardPremimItemPlan(keyword: String!): [IndexSearch]
+  "Return catalogs with Items filtered by keyword, standard and premium item plans"
+  getCatalogsStandardPremiumItemPlan(keyword: String!, lang: String!): [Catalog]
+  "Return catalogs and Items both filtered by keyword, standard and premium item plans"
+  getCatalogsStandardPremiumItemPlanFiltered(
+    keyword: String!
+    lang: String!
+  ): [IndexSearch]
 }
 
 input ItemInput {
