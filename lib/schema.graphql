@@ -1,5 +1,14 @@
 union IndexSearch = Catalog | Item
 
+type Pagination {
+  items: [Item]
+  pageInfo: [PageInfo]
+}
+
+type PageInfo {
+  count: Int!
+}
+
 type Item {
   _id: ID!
   mysqlId: Int!
@@ -7,6 +16,7 @@ type Item {
   planId: Int!
   image: String!
   description: String!
+  price: Int!
 }
 
 type Catalog {
@@ -27,7 +37,13 @@ type Query {
   "Return a catalog"
   getCatalog(id: ID!): Catalog
   "Return catalogs with Items filtered by keyword, standard and premium item plans"
-  getCatalogsStandardPremiumItemPlan(keyword: String!, lang: String!): [Catalog]
+  getItemsPaginationAndFIltered(
+    keyword: String!
+    lang: String!
+    order: String!
+    pageNumber: Int!
+    nPerPage: Int!
+  ): Pagination
   "Return catalogs and Items both filtered by keyword, standard and premium item plans"
   getCatalogsStandardPremiumItemPlanFiltered(
     keyword: String!
