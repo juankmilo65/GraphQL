@@ -2,7 +2,7 @@ union IndexSearch = Catalog | Item
 
 type Pagination {
   items: [Item]
-  catalogs: [Catalog]
+  catalogsItems: [CatalogItems]
   itemsIds: [ItemId]
   pageInfo: [PageInfo]
 }
@@ -31,6 +31,11 @@ type Catalog {
   name: String!
   items: [Item]
   filteredItems: [Item]
+}
+
+type CatalogItems {
+  _id: Catalog
+  items: Int!
 }
 
 type Query {
