@@ -5,10 +5,17 @@ type Pagination {
   catalogsItems: [CatalogItems]
   itemsIds: [ItemId]
   pageInfo: [PageInfo]
+  pricesRange: [PricesRange]
+  quantityLocation: [QuantityLocation]
 }
 
 type ItemId {
   _id: String!
+}
+
+type PricesRange {
+  max: Int!
+  min: Int!
 }
 
 type PageInfo {
@@ -36,6 +43,15 @@ type Catalog {
 type CatalogItems {
   _id: Catalog
   items: Int!
+}
+
+type QuantityLocation {
+  _id: Location
+  quantity: Int!
+}
+
+type Location {
+  location: String!
 }
 
 type Query {
